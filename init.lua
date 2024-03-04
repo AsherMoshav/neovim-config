@@ -256,6 +256,10 @@ require('lazy').setup {
     },
   },
 
+  { -- Adds git related signs to the gutter, as well as utilities for managing changes
+    'tpope/vim-fugitive',
+  },
+
   -- NOTE: Plugins can also be configured to run lua code when they are loaded.
   --
   -- This is often very useful to both group configuration, as well as handle
