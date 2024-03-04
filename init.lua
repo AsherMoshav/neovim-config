@@ -96,6 +96,7 @@ vim.g.maplocalleader = ' '
 --  For more options, you can see `:help option-list`
 --
 vim.opt.guicursor = 'n-v-i-c:block-Cursor'
+vim.opt.colorcolumn = "120"
 
 -- Make line numbers default
 vim.opt.number = true
