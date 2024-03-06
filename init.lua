@@ -472,6 +472,15 @@ require('lazy').setup {
         }
       end, { desc = '[S]earch [/] in Open Files' })
 
+      vim.keymap.set('n', '<leader>sig', function()
+        builtin.live_grep {
+          additional_args = {
+            '--no-ignore',
+          },
+          prompt_title = 'Live Grep in Ignored files',
+        }
+      end, { desc = '[S]earch [I]gnored [G]rep' })
+
       -- Shortcut for searching your neovim configuration files
       vim.keymap.set('n', '<leader>sn', function()
         builtin.find_files { cwd = vim.fn.stdpath 'config' }
