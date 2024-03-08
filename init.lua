@@ -259,6 +259,9 @@ require('lazy').setup {
 
   {
     'tpope/vim-fugitive',
+    config = function()
+      vim.keymap.set('n', '<leader>g', '<cmd>G<cr>')
+    end,
   },
   {
     'mfussenegger/nvim-dap',
@@ -429,7 +432,18 @@ require('lazy').setup {
         --     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
         --   },
         -- },
-        -- pickers = {}
+
+        pickers = {
+          buffers = {
+            show_all_buffers = true,
+            sort_lastused = true,
+            mappings = {
+              i = {
+                ['<c-d>'] = 'delete_buffer',
+              },
+            },
+          },
+        },
         extensions = {
           ['ui-select'] = {
             require('telescope.themes').get_dropdown(),
@@ -752,6 +766,8 @@ require('lazy').setup {
       local cmp = require 'cmp'
       local luasnip = require 'luasnip'
       luasnip.config.setup {}
+      local cmp_autopairs = require 'nvim-autopairs.completion.cmp'
+      cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
 
       cmp.setup {
         snippet = {
@@ -863,6 +879,21 @@ require('lazy').setup {
 
       -- ... and there is more!
       --  Check out: https://github.com/echasnovski/mini.nvim
+    end,
+  },
+  {
+    'AckslD/nvim-neoclip.lua',
+    dependencies = {
+      { 'nvim-telescope/telescope.nvim' },
+      { 'kkharji/sqlite.lua', module = 'sqlite' },
+    },
+    config = function()
+      require('neoclip').setup {
+        default_register = '+',
+        enable_persistent_history = true,
+      }
+
+      vim.keymap.set('n', '<leader>y', '<cmd>Telescope neoclip<cr>', { desc = 'Open clipboard history' })
     end,
   },
   {
