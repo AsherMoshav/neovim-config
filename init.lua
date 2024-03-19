@@ -320,7 +320,7 @@ require('lazy').setup {
         local widgets = require 'dap.ui.widgets'
         widgets.centered_float(widgets.frames)
       end)
-      vim.keymap.set('n', '<Leader>ds', function()
+      vim.keymap.set('n', '<leader>ds', function()
         local widgets = require 'dap.ui.widgets'
         widgets.centered_float(widgets.scopes)
       end)
@@ -432,6 +432,19 @@ require('lazy').setup {
         --     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
         --   },
         -- },
+        defaults = {
+          layout_config = {
+            vertical = {
+              width = 0.95,
+            },
+            horizontal = {
+              width = 0.95,
+            },
+          },
+          path_display = {
+            'shorten',
+          },
+        },
 
         pickers = {
           buffers = {
@@ -576,7 +589,7 @@ require('lazy').setup {
 
           -- Fuzzy find all the symbols in your current document.
           --  Symbols are things like variables, functions, types, etc.
-          map('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
+          -- map('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
 
           -- Fuzzy find all the symbols in your current workspace
           --  Similar to document symbols, except searches over your whole project.
@@ -624,6 +637,7 @@ require('lazy').setup {
       --  So, we create new capabilities with nvim cmp, and then broadcast that to the servers.
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
+      capabilities.textDocument.completion.completionItem.snippetSupport = true
 
       -- Enable the following language servers
       --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
@@ -649,6 +663,11 @@ require('lazy').setup {
         --
         -- phpactor = {},
         intelephense = {},
+        cssls = {
+          capabilities = capabilities,
+        },
+        cssmodules_ls = {},
+        -- css_variables = {},
 
         lua_ls = {
           -- cmd = {...},
@@ -904,10 +923,31 @@ require('lazy').setup {
     -- this is equalent to setup({}) function
   },
   {
+    'mg979/vim-visual-multi',
+  },
+  {
+    'github/copilot.vim',
+  },
+  {
+    'svermeulen/vim-cutlass',
+  },
+  {
     'stevearc/oil.nvim',
-    opts = {},
+    opts = {
+      view_options = {
+        show_hidden = true,
+      },
+    },
     -- Optional dependencies
     dependencies = { 'nvim-tree/nvim-web-devicons' },
+  },
+  {
+    'pbogut/magento2-ls',
+    config = function()
+      require('magento2_ls').setup {
+        root_dir = vim.fn.getcwd() .. '/application',
+      }
+    end,
   },
   { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
