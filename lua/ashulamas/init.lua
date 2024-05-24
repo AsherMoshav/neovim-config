@@ -1,0 +1,57 @@
+require 'ashulamas.settings'
+require 'ashulamas.remaps'
+require 'ashulamas.autocommands'
+require 'ashulamas.lazy'
+
+-- require('lazy').setup {
+--   { 'numToStr/Comment.nvim', opts = {} },
+--
+--   -- NOTE: Plugins can also be configured to run lua code when they are loaded.
+--   --
+--   -- This is often very useful to both group configuration, as well as handle
+--   -- lazy loading plugins that don't need to be loaded immediately at startup.
+--   --
+--   -- For example, in the following configuration, we use:
+--   --  event = 'VimEnter'
+--   --
+--   -- which loads which-key before all the UI elements are loaded. Events can be
+--   -- normal autocommands events (`:help autocmd-events`).
+--   --
+--   -- Then, because we use the `config` key, the configuration only runs
+--   -- after the plugin has been loaded:
+--   --  config = function() ... end
+--
+--   { -- Useful plugin to show you pending keybinds.
+--     'folke/which-key.nvim',
+--     event = 'VimEnter', -- Sets the loading event to 'VimEnter'
+--     config = function() -- This is the function that runs, AFTER loading
+--       require('which-key').setup()
+--
+--       -- Document existing key chains
+--       require('which-key').register {
+--         ['<leader>c'] = { name = '[C]ode', _ = 'which_key_ignore' },
+--         ['<leader>d'] = { name = '[D]ocument', _ = 'which_key_ignore' },
+--         ['<leader>r'] = { name = '[R]ename', _ = 'which_key_ignore' },
+--         ['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
+--         ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
+--       }
+--     end,
+--   },
+--   {
+--     'kristijanhusak/vim-dadbod-ui',
+--     dependencies = {
+--       { 'tpope/vim-dadbod', lazy = true },
+--       { 'kristijanhusak/vim-dadbod-completion', ft = { 'sql', 'mysql', 'plsql' }, lazy = true },
+--     },
+--     cmd = {
+--       'DBUI',
+--       'DBUIToggle',
+--       'DBUIAddConnection',
+--       'DBUIFindBuffer',
+--     },
+--     init = function()
+--       vim.g.db_ui_use_nerd_fonts = 1
+--     end,
+--   },
+--
+-- }
